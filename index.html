@@ -35,8 +35,7 @@
         <h2>About Me</h2>
         <p>
             This website is my final project. It demonstrates responsive design,
-            accessibility, and clean HTML and CSS structure. I enjoy creating
-            simple and user-friendly web applications.
+            accessibility, and clean HTML and CSS structure.
         </p>
     </section>
 
@@ -50,29 +49,32 @@
         </div>
     </section>
 
-    <!-- RECOMMENDATION -->
+    <!-- RECOMMENDATIONS -->
     <section id="recommendation">
         <h2>Recommendations</h2>
-        <div class="cards">
+
+        <div class="cards" id="recommendationList">
             <div class="card">
                 "Very hardworking and creative in designing websites."
                 <br><strong>- Classmate</strong>
             </div>
-            <div class="card">
-                "Shows strong dedication in completing projects on time."
-                <br><strong>- Instructor</strong>
-            </div>
-            <div class="card">
-                "Easy to work with and very responsible."
-                <br><strong>- Teammate</strong>
-            </div>
+        </div>
+
+        <!-- BUTTON -->
+        <button onclick="showForm()" class="btn">Add Recommendation</button>
+
+        <!-- FORM -->
+        <div id="formContainer" style="display:none; margin-top:15px;">
+            <input type="text" id="name" placeholder="Your Name">
+            <textarea id="message" placeholder="Write recommendation..."></textarea>
+            <button onclick="addRecommendation()" class="btn">Submit</button>
         </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
         <h2>Contact Me</h2>
-        <p>Email: arvyjanelolo8@email.com</p>
+        <p>Email: example@email.com</p>
     </section>
 
 </main>
@@ -80,6 +82,36 @@
 <footer>
     <p>© 2026 My Final Website</p>
 </footer>
+
+<!-- JAVASCRIPT -->
+<script>
+function showForm() {
+    document.getElementById("formContainer").style.display = "block";
+}
+
+function addRecommendation() {
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+
+    if(name === "" || message === "") {
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    let newCard = document.createElement("div");
+    newCard.className = "card";
+    newCard.innerHTML = `"${message}"<br><strong>- ${name}</strong>`;
+
+    document.getElementById("recommendationList").appendChild(newCard);
+
+    // Clear inputs
+    document.getElementById("name").value = "";
+    document.getElementById("message").value = "";
+
+    // Hide form again
+    document.getElementById("formContainer").style.display = "none";
+}
+</script>
 
 </body>
 </html>
